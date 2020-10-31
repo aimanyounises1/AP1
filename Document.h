@@ -11,6 +11,7 @@ class Document{
 	bool replace(std::string& str, const std::string& from, const std::string& to);
 	public:
 	Document();
+	void init(ifstream& is);
 	void text(string text);
 	void p();
 	void prec_p();
@@ -18,8 +19,12 @@ class Document{
 	void d();
 	void a();
 	void i();
-	void num(int number);
+	void num(int);
 	void c();
 	void slesh_text(string text);
 	void s_slech_old_new(string oldText, string newText);
+	void j();
+	void w(string &);
+	void load();
+	void handle(string &);
 };

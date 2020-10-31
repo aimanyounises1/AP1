@@ -3,9 +3,9 @@
 #include <sstream>
 #include <bits/stdc++.h>
 #include "Editor.h"
-int main(){
-	Editor e;
-	e.loop();
+int main(int argc,char *argv[]){
+	Editor ed;
+	ed.loop();
     return 0; 
 	
 }
