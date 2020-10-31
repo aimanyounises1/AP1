@@ -10,7 +10,7 @@ Document::Document()
 	currentLine = 0;
 	addForward = false;
 }
-void Document::init(ifstream & in) {
+void Document::init(ifstream& in) {
 	if (in.is_open())
 	{
 		string line ;

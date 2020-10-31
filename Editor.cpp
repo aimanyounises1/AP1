@@ -123,7 +123,7 @@ void Editor::handle(string line)
 	}
 	if (line.find("txt"))
 	{
-		ifstream in(line);
+		 std::ifstream in(line);
 		document.init(in);
 		document.load();
 	}
