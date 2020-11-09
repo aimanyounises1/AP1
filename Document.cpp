@@ -10,23 +10,28 @@ Document::Document()
 	currentLine = 0;
 	addForward = false;
 }
-void Document::init(ifstream& in) {
+void Document::init(ifstream &in)
+{
+	vector<string> v1;
 	if (in.is_open())
 	{
-		string line ;
-		vector <string>:: iterator it;
-		it = lines.begin();
-		while (getline(in,line))
+		string line;
+		while (getline(in, line))
 		{
-
-			lines.insert( it + currentLine , line);
-
+		v1.push_back(line);
 		}
 		in.close();
 	}
-
+	for (string t : v1)
+	{
+		if (t == "q")
+		{
+			break;
+		}
+		cout << t << endl;
+		handle(t);
+	}
 }
-
 void Document::text(string text)
 {
 	if (!text.compare("."))
@@ -51,15 +56,7 @@ void Document::p()
 {
 	cout << lines[currentLine - 1] << endl;
 }
-void Document::load(){
-	 vector<string>::iterator it;
-	 vector<string>::iterator end;
-	 it = lines.begin();
-	 for (auto i  = it; it != end; ++it)
-	 {
-		 handle(*it);
-	 }
- }
+
 //print all lines in vector
 void Document::prec_p()
 {
@@ -162,18 +159,16 @@ void Document::j()
 		lines.insert(lines.begin() + currentLine - 1, a);
 	}
 }
-void Document::w(string & out)
+void Document::w(string &out)
 {
-	ofstream output(out);
-	if (output.is_open())
-	{
-		ostream_iterator<string> output_file(output, "\n");
-		vector<string>::iterator it;
-		it = lines.begin();
-		vector<string>::iterator it2;
-		it2 = lines.end();
-		copy(it, it2, output_file);
-	}
+	ofstream output;
+	output.open(out);
+	ostream_iterator<string> output_file(output, "\n");
+	vector<string>::iterator it;
+	it = lines.begin();
+	vector<string>::iterator it2;
+	it2 = lines.end();
+	copy(it, it2, output_file);
 	output.close();
 }
 vector<string> split(string str, char splitBy)
@@ -195,9 +190,9 @@ vector<string> split(string str, char splitBy)
 	words.push_back(word);
 	return words;
 }
- 
+
 void Document::handle(string &line)
- {
+{
 	//in case of 'a', 'i' or 'c', call "text" function, until '.' recived.
 	static bool waitForDot = false;
 	if (waitForDot)
@@ -246,9 +241,10 @@ void Document::handle(string &line)
 		d();
 		return;
 	}
-	if (line.at(0) == 'w')
+	if (line.at(0) == 'w' && line.at(1)==' ')
 	{
-		line = line.substr(3, line.length());
+		cout << "Hello i'm in" << endl;
+		line = line.substr(2, line.length());
 		w(line);
 	}
 
@@ -297,5 +293,4 @@ void Document::handle(string &line)
 			return;
 		}
 	}
- 
- }
+}

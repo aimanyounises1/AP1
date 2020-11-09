@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <bits/stdc++.h>
+#include <vector>
 #include "Editor.h"
 using namespace std;
 Editor::Editor() : document() {}
@@ -16,6 +17,29 @@ void Editor::loop()
 			break;
 		handle(a);
 	}
+}
+
+void Editor::init(string &name)
+{
+	ifstream in;
+	in.open(name);
+	vector<string> vec;
+	string line;
+	int count = 0;
+	while (getline(in, line))
+	{
+		vec.insert(count + vec.begin(),line);
+		count++;
+	}
+	in.close();
+	  for (int i = 0;i<vec.size();i++) {
+		 cout<<vec[i]<<endl; 
+        if (vec[i] == "q")
+		{
+		break;
+		}
+		handle(vec[i]);
+} 
 }
 //handle a text line from the user
 void Editor::handle(string line)
@@ -69,9 +93,9 @@ void Editor::handle(string line)
 		document.d();
 		return;
 	}
-	if (line.at(0) == 'w')
+	if (line.at(0) == 'w' && line.at(1) == ' ')
 	{
-		line = line.substr(3, line.length());
+		line = line.substr(2, line.length());
 		document.w(line);
 	}
 
@@ -120,12 +144,6 @@ void Editor::handle(string line)
 			document.s_slech_old_new(arr[1], arr[2]);
 			return;
 		}
-	}
-	if (line.find("txt"))
-	{
-		 std::ifstream in(line);
-		document.init(in);
-		document.load();
 	}
 	//text
 	//document.text(line);

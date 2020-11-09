@@ -8,5 +8,6 @@ class Editor{
 	void handle(string line);
 	public:
 	Editor();
+	void init(string &);
 	void loop();
 };
