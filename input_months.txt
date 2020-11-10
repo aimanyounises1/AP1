@@ -12,7 +12,6 @@ $
 c
 When February's days are twenty-nine.
 .
--2
 d
 w poem.txt
 q

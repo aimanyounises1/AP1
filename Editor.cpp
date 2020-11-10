@@ -28,18 +28,19 @@ void Editor::init(string &name)
 	int count = 0;
 	while (getline(in, line))
 	{
-		vec.insert(count + vec.begin(),line);
+		vec.insert(count + vec.begin(), line);
 		count++;
 	}
 	in.close();
-	  for (int i = 0;i<vec.size();i++) {
-		 cout<<vec[i]<<endl; 
-        if (vec[i] == "q")
+	for (int i = 0; i < vec.size(); i++)
+	{
+		cout << vec[i] << endl;
+		if (!vec[i].compare("q"))
 		{
-		break;
+			break;
 		}
 		handle(vec[i]);
-} 
+	}
 }
 //handle a text line from the user
 void Editor::handle(string line)
@@ -128,6 +129,10 @@ void Editor::handle(string line)
 		document.text(line);
 		return;
 	}
+	
+	if(line == "j"){
+		document.j();
+	}
 
 	// '/text'
 	if (line.at(0) == '/')
@@ -145,6 +150,7 @@ void Editor::handle(string line)
 			return;
 		}
 	}
+
 	//text
 	//document.text(line);
 }
