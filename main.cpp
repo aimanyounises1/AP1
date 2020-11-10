@@ -1,11 +1,8 @@
 #include <string>
-#include <iostream>
-#include <sstream>
-#include <bits/stdc++.h>
 #include "Editor.h"
 int main(int argc, char *argv[])
 {
-	Editor ed;
+	Editor ed ;
 	string name = "";
 	if (argc > 1)
 	{
@@ -14,7 +11,7 @@ int main(int argc, char *argv[])
 	switch (argc)
 	{
 	case 1:
-		cout << argc << endl;
+		
 		ed.loop();
 		break;
 	case 2:
