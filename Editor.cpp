@@ -30,6 +30,20 @@ void Editor::init(string &name)
 	int count = 0;
 	while (getline(in, line))
 	{
+		if (line.at(0) == 'e' && line.find(".txt"))
+		{
+			ifstream in;
+			string name = line.substr(2, line.length());
+			cout << "The string is = " << name << endl;
+			in.open(name);
+			string a;
+			while (getline(in, a))
+			{
+				cout << a << endl;
+				document.append(a);
+			}
+			in.close();
+		}
 		vec.insert(count + vec.begin(), line);
 		count++;
 	}

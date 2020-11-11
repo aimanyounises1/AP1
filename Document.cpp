@@ -58,6 +58,10 @@ void Document::i()
 
 	addForward = false;
 }
+void Document::append(string &push) {
+	lines.insert(lines.begin()+ currentLine , push);
+	currentLine++;
+}
 
 void Document::d()
 {
@@ -141,6 +145,10 @@ bool Document::replace(string &str, const string &from, const string &to)
 		return false;
 	str.replace(start_pos, from.length(), to);
 	return true;
+}
+// this function used to add new lines to editor from another file
+void Document::e(ifstream &in) {
+
 }
 void Document::j()
 {

@@ -4,12 +4,12 @@
 using namespace std;
 class Document{
 	private:
-	std::vector <string> lines;
-	int currentLine;
 	bool addForward;
 	bool addBackward;
-	bool replace(std::string& str, const std::string& from, const std::string& to);
 	public:
+	int currentLine;
+	vector<string>lines;
+	bool replace(std::string& str, const std::string& from, const std::string& to);
 	Document();
 	void init(ifstream& is);
 	void text(string text);
@@ -18,6 +18,7 @@ class Document{
 	void d();
 	void a();
 	void i();
+	void append(string &);
 	void n();
 	void num(int);
 	void num2(int);
@@ -28,4 +29,5 @@ class Document{
 	void w(string &);
 	void load();
 	void handle(string &);
+	void e(ifstream &in);
 };
