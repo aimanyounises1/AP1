@@ -18,6 +18,7 @@ s/conqer/conquer/
 s/hide/heed/
 /courage/
 s/your //
+-3
 j
 w poem.txt
 q

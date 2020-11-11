@@ -15,18 +15,25 @@ void Document::text(string text)
 	if (!text.compare("."))
 		return;
 	//cout << "text!";
+	
+
 	if (addForward)
 	{
+		
 		vector<string>::iterator it;
 		it = lines.begin();
 		lines.insert(it + currentLine, text);
 		currentLine++;
+		cout<<"the line number is = "<< currentLine <<endl;
 	}
 	else
 	{
 		vector<string>::iterator it;
 		it = lines.begin();
-		lines.insert(it + currentLine - 1, text);
+		lines.insert(it + currentLine , text);
+		currentLine++;
+		cout<<"the line number is = "<< currentLine <<endl;
+
 	}
 }
 //prints tha last line in vector
@@ -43,20 +50,22 @@ void Document::prec_p()
 		cout << lines[i] << endl;
 	}
 }
-// a pinter to the last line in vector plus the line it self
 void Document::n()
 {
 	cout << currentLine << "	" << lines[currentLine - 1] << endl;
 }
 
+
 void Document::i()
 {
+	
 	addForward = false;
+	
 }
 
 void Document::d()
 {
-	lines.erase(lines.begin() + currentLine - 1);
+	lines.erase(lines.begin() + currentLine -1);
 	currentLine--;
 }
 
@@ -73,12 +82,19 @@ void Document::a()
 
 void Document::num(int number)
 {
-	currentLine = number;
+	
+	currentLine = number;	
 	while (currentLine > lines.size())
 	{
 		lines.push_back("");
 	}
 	cout << lines[currentLine - 1] << endl;
+}
+void Document::num2(int move){
+	if (currentLine + move <  lines.size())
+	{
+		currentLine += move;
+	}
 }
 // look for the text
 void Document::slesh_text(string text)

@@ -5,6 +5,8 @@
 #include <vector>
 #include "Editor.h"
 using namespace std;
+static bool waitForDot = false;
+
 Editor::Editor() : document() {}
 
 void Editor::loop()
@@ -46,8 +48,7 @@ void Editor::init(string &name)
 void Editor::handle(string line)
 {
 
-	//in case of 'a', 'i' or 'c', call "text" function, until '.' recived.
-	static bool waitForDot = false;
+	//in case of 'a', 'i' or 'c', call "text" function, until '.' received.
 	if (waitForDot)
 	{
 		document.text(line);
@@ -59,11 +60,6 @@ void Editor::handle(string line)
 	if (!line.compare("p"))
 	{
 		document.p();
-		return;
-	}
-	if (!line.compare("n"))
-	{
-		document.n();
 		return;
 	}
 	if (!line.compare("%p"))
@@ -99,6 +95,12 @@ void Editor::handle(string line)
 		line = line.substr(2, line.length());
 		document.w(line);
 	}
+	if (!line.compare("n"))
+	{
+		document.n();
+		return;
+	}
+	
 
 	//check if the text is a number
 	int num = 0;
@@ -119,7 +121,11 @@ void Editor::handle(string line)
 	}
 	if (isAnumber)
 	{
-		document.num(num);
+		if(s.at(0)== '+' ||s.at(0) == '-'){
+		document.num2(num);
+		}else{
+			document.num(num);
+		}
 		return;
 	}
 
