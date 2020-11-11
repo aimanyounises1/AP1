@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iterator>
 using namespace std;
+static int counti = 0;
 Document::Document()
 {
 	currentLine = 0;
@@ -21,19 +22,20 @@ void Document::text(string text)
 
 		vector<string>::iterator it;
 		it = lines.begin();
-		lines.insert(it + currentLine, text);
+		lines.insert(it + currentLine  , text);
 		currentLine++;
-		cout << "the line number is = " << currentLine << endl;
+		cout << "current = " << currentLine << endl;
 	}
 	else
-	{
+	{ 
 		vector<string>::iterator it;
 		it = lines.begin();
-		lines.insert(it + currentLine, text);
-		currentLine++;
-		cout << "the line number is = " << currentLine << endl;
+		lines.insert(it + currentLine -1 , text);
+		currentLine ++;
+		}
+		
 	}
-}
+
 //prints tha last line in vector
 void Document::p()
 {
@@ -55,12 +57,14 @@ void Document::n()
 
 void Document::i()
 {
-
 	addForward = false;
 }
-void Document::append(string &push) {
-	lines.insert(lines.begin()+ currentLine , push);
+void Document::append(string &push)
+{
+	lines.insert(lines.begin() + currentLine, push);
 	currentLine++;
+	cout << currentLine <<endl;
+
 }
 
 void Document::d()
@@ -82,9 +86,9 @@ void Document::a()
 
 void Document::num(int number)
 {
-	
+
 	currentLine = number;
-	cout<< "CurrentLine is =" <<currentLine<<endl;
+	cout << "CurrentLine is =" << currentLine << endl;
 	while (currentLine > lines.size())
 	{
 		lines.push_back("");
@@ -97,14 +101,14 @@ void Document::num2(int move)
 	{
 		currentLine += move;
 	}
-	cout << "CurrentLine is = "<<currentLine <<endl;
+	cout << "CurrentLine is = " << currentLine << endl;
 }
 // look for the text
 void Document::slesh_text(string text)
 {
 	int current = currentLine;
 	bool ok = false;
-	for (int i = current - 1  ; i < lines.size(); i++)
+	for (int i = current - 1; i < lines.size(); i++)
 	{
 		size_t found = lines[i].find(text);
 		if (found != string::npos)
@@ -147,19 +151,19 @@ bool Document::replace(string &str, const string &from, const string &to)
 	return true;
 }
 // this function used to add new lines to editor from another file
-void Document::e(ifstream &in) {
-
+void Document::e(ifstream &in)
+{
 }
 void Document::j()
 {
 	if (currentLine > 1)
 	{
-		string a = lines[currentLine - 1] + lines[currentLine ];
-		cout << "The new string is " <<a <<endl;
-		lines.erase(lines.begin() + currentLine );
+		string a = lines[currentLine - 1] + lines[currentLine];
+		cout << "The new string is " << a << endl;
+		lines.erase(lines.begin() + currentLine);
 		currentLine = --currentLine;
-		lines.erase(lines.begin() + currentLine );
-		lines.insert(lines.begin() + currentLine , a);
+		lines.erase(lines.begin() + currentLine);
+		lines.insert(lines.begin() + currentLine, a);
 	}
 }
 void Document::w(string &out)

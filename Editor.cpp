@@ -43,9 +43,10 @@ void Editor::init(string &name)
 				document.append(a);
 			}
 			in.close();
-		}
+		}else{
 		vec.insert(count + vec.begin(), line);
 		count++;
+		}
 	}
 	in.close();
 	for (int i = 0; i < vec.size(); i++)
@@ -88,7 +89,7 @@ void Editor::handle(string line)
 		return;
 	}
 	if (!line.compare("i"))
-	{
+	{	
 		document.i();
 		waitForDot = true;
 		return;
