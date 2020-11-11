@@ -100,7 +100,6 @@ void Editor::handle(string line)
 		document.n();
 		return;
 	}
-	
 
 	//check if the text is a number
 	int num = 0;
@@ -121,9 +120,12 @@ void Editor::handle(string line)
 	}
 	if (isAnumber)
 	{
-		if(s.at(0)== '+' ||s.at(0) == '-'){
-		document.num2(num);
-		}else{
+		if (s.at(0) == '+' || s.at(0) == '-')
+		{
+			document.num2(num);
+		}
+		else
+		{
 			document.num(num);
 		}
 		return;
@@ -135,8 +137,9 @@ void Editor::handle(string line)
 		document.text(line);
 		return;
 	}
-	
-	if(line == "j"){
+
+	if (line == "j")
+	{
 		document.j();
 	}
 

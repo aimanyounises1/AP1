@@ -15,25 +15,23 @@ void Document::text(string text)
 	if (!text.compare("."))
 		return;
 	//cout << "text!";
-	
 
 	if (addForward)
 	{
-		
+
 		vector<string>::iterator it;
 		it = lines.begin();
 		lines.insert(it + currentLine, text);
 		currentLine++;
-		cout<<"the line number is = "<< currentLine <<endl;
+		cout << "the line number is = " << currentLine << endl;
 	}
 	else
 	{
 		vector<string>::iterator it;
 		it = lines.begin();
-		lines.insert(it + currentLine , text);
+		lines.insert(it + currentLine, text);
 		currentLine++;
-		cout<<"the line number is = "<< currentLine <<endl;
-
+		cout << "the line number is = " << currentLine << endl;
 	}
 }
 //prints tha last line in vector
@@ -55,17 +53,15 @@ void Document::n()
 	cout << currentLine << "	" << lines[currentLine - 1] << endl;
 }
 
-
 void Document::i()
 {
-	
+
 	addForward = false;
-	
 }
 
 void Document::d()
 {
-	lines.erase(lines.begin() + currentLine -1);
+	lines.erase(lines.begin() + currentLine - 1);
 	currentLine--;
 }
 
@@ -83,24 +79,28 @@ void Document::a()
 void Document::num(int number)
 {
 	
-	currentLine = number;	
+	currentLine = number;
+	cout<< "CurrentLine is =" <<currentLine<<endl;
 	while (currentLine > lines.size())
 	{
 		lines.push_back("");
 	}
 	cout << lines[currentLine - 1] << endl;
 }
-void Document::num2(int move){
-	if (currentLine + move <  lines.size())
+void Document::num2(int move)
+{
+	if (currentLine + move < lines.size())
 	{
 		currentLine += move;
 	}
+	cout << "CurrentLine is = "<<currentLine <<endl;
 }
 // look for the text
 void Document::slesh_text(string text)
 {
+	int current = currentLine;
 	bool ok = false;
-	for (int i = currentLine - 1; i < lines.size(); i++)
+	for (int i = current - 1  ; i < lines.size(); i++)
 	{
 		size_t found = lines[i].find(text);
 		if (found != string::npos)
@@ -112,7 +112,7 @@ void Document::slesh_text(string text)
 	}
 	if (!ok)
 	{
-		for (int i = 0; i < currentLine - 1; i++)
+		for (int i = 0; i <= current - 1; i++)
 		{
 			size_t found = lines[i].find(text);
 			if (found != string::npos)
@@ -146,11 +146,12 @@ void Document::j()
 {
 	if (currentLine > 1)
 	{
-		string a = lines[currentLine] + lines[currentLine + 1];
-		lines.erase(lines.begin() + currentLine - 1);
+		string a = lines[currentLine - 1] + lines[currentLine ];
+		cout << "The new string is " <<a <<endl;
+		lines.erase(lines.begin() + currentLine );
 		currentLine = --currentLine;
-		lines.erase(lines.begin() + currentLine - 1);
-		lines.insert(lines.begin() + currentLine - 1, a);
+		lines.erase(lines.begin() + currentLine );
+		lines.insert(lines.begin() + currentLine , a);
 	}
 }
 void Document::w(string &out)
