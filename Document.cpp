@@ -65,16 +65,7 @@ void Document::n()
 
 void Document::i()
 {
-	if (currentLine == 0)
-	{
-		currentLine = 0;
-	}
-	else
-	{
-		cout << "currenLine"<<currentLine <<endl;
-		
-	}
-
+	
 	addForward = false;
 }
 void Document::append(string &push)
