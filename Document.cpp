@@ -5,34 +5,36 @@
 #include <fstream>
 #include <iterator>
 using namespace std;
-static int counti = 0;
 Document::Document()
 {
-	currentLine = 0;
+	currentLine = -1;
 	addForward = false;
+	currnetI =-1;
 }
 void Document::text(string text)
 {
 	if (!text.compare("."))
 		return;
 	//cout << "text!";
-
+	
 	if (addForward)
 	{
+		vector<string>::iterator it;
+		it = lines.begin();
+		lines.insert(it + currentLine +1, text);
+		currentLine++;
+
+		cout << "current addforward = "<< currentLine << endl;
 		
+	}
+	else
+	{ 	
 		vector<string>::iterator it;
 		it = lines.begin();
 		lines.insert(it + currentLine , text);
 		currentLine++;
-		cout << "current addforward = "<< currentLine << endl;
-	}
-	else
-	{ 
-		vector<string>::iterator it;
-		it = lines.begin();
-		lines.insert(it + currentLine  , text);
-		currentLine++;
-		cout<< "current line is = " << currentLine <<endl;
+		//currnetI++;
+		cout<< "currentline = " << currentLine <<endl;
 		}
 		
 	}
@@ -58,22 +60,28 @@ void Document::n()
 
 void Document::i()
 {
-	//currentLine -- ;
+	if (currentLine ==0)
+	{
+		currentLine = 0;
+	}else
+	{
+		currentLine -- ;
+	}
+	//currnetI = currentLine -1;
 	addForward = false;
 }
 void Document::append(string &push)
-{
-	lines.insert(lines.begin() + currentLine, push);
+{	
+	cout <<currentLine <<endl;
+	lines.insert(lines.begin() + currentLine +1  , push);
 	currentLine++;
-	cout << currentLine <<endl;
-
+	
 }
-
 void Document::d()
 {
 	//currentLine--;
 	cout << lines[currentLine]<<endl;
-	lines.erase(lines.begin() + currentLine -1);
+	lines.erase(lines.begin() + currentLine);
 	currentLine--;
 }
 
@@ -83,7 +91,7 @@ void Document::c()
 	a();
 }
 void Document::dollar(){
-currentLine = lines.size() ;
+currentLine = lines.size()-1;
 cout <<"currenline is"<<currentLine<<endl;
 }
 void Document::a()
@@ -110,13 +118,11 @@ void Document::num2(int move)
 	{
 		
 		currentLine += move;
-	//	currentLine --;
 	}
 	
 	if (move < 0 && currentLine + move < lines.size())
 	{
 		currentLine += move;
-		//currentLine--;
 	}
 	cout << "current line is = "<< currentLine <<endl;
 	cout  << lines[currentLine] << endl;

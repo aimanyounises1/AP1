@@ -6,7 +6,7 @@
 #include "Editor.h"
 using namespace std;
 static bool waitForDot = false;
-
+static bool zero = false;
 Editor::Editor() : document() {}
 
 void Editor::loop()
@@ -67,8 +67,14 @@ void Editor::handle(string line)
 	if (waitForDot)
 	{
 		document.text(line);
-		if (!line.compare("."))
+		if (!line.compare(".")){
 			waitForDot = false;
+			if (zero)
+			{
+				zero =false;
+				document.currentLine --;
+			}	
+		}
 		return;
 	}
 
@@ -90,6 +96,10 @@ void Editor::handle(string line)
 	}
 	if (!line.compare("i"))
 	{	
+		if (document.currentLine ==0)
+		{
+			zero = true;
+		}
 		document.i();
 		waitForDot = true;
 		
