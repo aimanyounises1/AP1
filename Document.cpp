@@ -15,16 +15,14 @@ void Document::text(string text)
 {
 	if (!text.compare("."))
 		return;
-	//cout << "text!";
 
 	if (addForward)
 	{
-		
+
 		vector<string>::iterator it;
 		it = lines.begin();
 		lines.insert(it + currentLine + 1, text);
 		currentLine++;
-		cout << "current addforward = " << currentLine << endl;
 	}
 	else
 	{
@@ -32,20 +30,16 @@ void Document::text(string text)
 		it = lines.begin();
 		lines.insert(it + currentLine, text);
 		currentLine++;
-		//currnetI++;
-		cout << "currentline = " << currentLine << endl;
 	}
 }
 void Document::e(string &txt)
 {
 	ifstream in;
 	string name = txt.substr(2, txt.length());
-	cout << "The string is = " << name << endl;
 	in.open(name);
 	string a;
 	while (getline(in, a))
 	{
-		cout << a << endl;
 		append(a);
 	}
 	in.close();
@@ -84,14 +78,12 @@ void Document::i()
 }
 void Document::append(string &push)
 {
-	cout << currentLine << endl;
-	lines.insert(lines.begin() + currentLine , push);
+	lines.insert(lines.begin() + currentLine, push);
 	currentLine++;
 }
 void Document::d()
 {
 	//currentLine--;
-	cout << lines[currentLine] << endl;
 	lines.erase(lines.begin() + currentLine);
 	currentLine--;
 }
@@ -104,11 +96,10 @@ void Document::c()
 void Document::dollar()
 {
 	currentLine = lines.size() - 1;
-	cout << "currenline is" << currentLine << endl;
 }
 void Document::a()
 {
-	
+
 	addForward = true;
 }
 
@@ -121,7 +112,6 @@ void Document::num(int number)
 	else
 	{
 		currentLine = number - 1;
-		cout << "CurrentLine is =" << currentLine << endl;
 		while (currentLine > lines.size())
 		{
 			lines.push_back("");
@@ -142,7 +132,6 @@ void Document::num2(int move)
 	{
 		currentLine += move;
 	}
-	cout << "current line is = " << currentLine << endl;
 	cout << lines[currentLine] << endl;
 }
 
@@ -181,7 +170,6 @@ void Document::slesh_text(string text)
 
 void Document::s_slech_old_new(string oldText, string newText)
 {
-	cout << "current line is" << currentLine << endl;
 	replace(lines[currentLine], oldText, newText);
 	cout << lines[currentLine] << endl;
 }
@@ -201,7 +189,6 @@ void Document::j()
 	if (currentLine >= 0)
 	{
 		string a = lines[currentLine] + " " + lines[currentLine + 1];
-		cout << "The new string is " << a << endl;
 		lines.erase(lines.begin() + currentLine + 1);
 		currentLine = --currentLine;
 		lines.erase(lines.begin() + currentLine + 1);
@@ -212,12 +199,16 @@ void Document::w(string &out)
 {
 	ofstream output;
 	output.open(out);
-	ostream_iterator<string> output_file(output, "\n");
-	vector<string>::iterator it;
-	it = lines.begin();
-	vector<string>::iterator it2;
-	it2 = lines.end();
-	copy(it, it2, output_file);
+	for (int i = 0; i < lines.size(); i++)
+	{
+		if (i + 1 == lines.size())
+		{
+			output << lines[i];
+		}else
+		{
+			output << lines[i] <<"\n";
+		}	
+	}
 	output.close();
 }
 vector<string> split(string str, char splitBy)

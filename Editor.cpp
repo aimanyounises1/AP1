@@ -7,7 +7,7 @@
 using namespace std;
 static bool waitForDot = false;
 static bool zero = false;
-static bool aFun =  false;
+static bool aFun = false;
 Editor::Editor() : document() {}
 
 void Editor::loop()
@@ -33,7 +33,6 @@ void Editor::init(string &name)
 	{
 		vec.insert(count + vec.begin(), line);
 		count++;
-		
 	}
 	in.close();
 	for (int i = 0; i < vec.size(); i++)
@@ -45,6 +44,7 @@ void Editor::init(string &name)
 		}
 		handle(vec[i]);
 	}
+	
 }
 //handle a text line from the user
 void Editor::handle(string line)
@@ -54,13 +54,14 @@ void Editor::handle(string line)
 	if (waitForDot)
 	{
 		document.text(line);
-		if (!line.compare(".")){
+		if (!line.compare("."))
+		{
 			waitForDot = false;
 			if (zero)
 			{
-				zero =false;
-				document.currentLine --;
-			}	
+				zero = false;
+				document.currentLine--;
+			}
 		}
 		return;
 	}
@@ -77,24 +78,23 @@ void Editor::handle(string line)
 	}
 	if (!line.compare("a"))
 	{
-		if (document.lines.empty()&&document.currentLine == 0)
+		if (document.lines.empty() && document.currentLine == 0)
 		{
 			document.currentLine--;
-		
 		}
 		waitForDot = true;
 		document.a();
 		return;
 	}
 	if (!line.compare("i"))
-	{	
-		if (document.currentLine ==0)
+	{
+		if (document.currentLine == 0)
 		{
 			zero = true;
 		}
 		document.i();
 		waitForDot = true;
-		
+
 		return;
 	}
 	if (!line.compare("c"))
@@ -177,14 +177,14 @@ void Editor::handle(string line)
 			return;
 		}
 	}
-	if (line =="$")
+	if (line == "$")
 	{
 		document.dollar();
 	}
 	if (line.at(0) == 'e' && line.find(".txt"))
-		{
+	{
 		document.e(line);
-		}
+	}
 	//text
 	//document.text(line);
 }
