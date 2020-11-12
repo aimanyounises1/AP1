@@ -1,19 +1,6 @@
-e months.txt
-1
-i
+February has twenty-eight alone.
+Excepting leap-year - that's the time
 Thirty days hath September,
 April, June, and November;
-.
-+1
-a
 All the rest have thirty-one,
-All the rest have thirty-one,
-.
-$
-c
 When February's days are twenty-nine.
-.
--2
-d
-w poem.txt
-q

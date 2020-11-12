@@ -19,19 +19,20 @@ void Document::text(string text)
 
 	if (addForward)
 	{
-
+		
 		vector<string>::iterator it;
 		it = lines.begin();
-		lines.insert(it + currentLine  , text);
+		lines.insert(it + currentLine , text);
 		currentLine++;
-		cout << "current = " << currentLine << endl;
+		cout << "current addforward = "<< currentLine << endl;
 	}
 	else
 	{ 
 		vector<string>::iterator it;
 		it = lines.begin();
 		lines.insert(it + currentLine -1 , text);
-		currentLine ++;
+		currentLine++;
+		cout<< "current line is = " << currentLine <<endl;
 		}
 		
 	}
@@ -57,6 +58,7 @@ void Document::n()
 
 void Document::i()
 {
+	//currentLine -- ;
 	addForward = false;
 }
 void Document::append(string &push)
@@ -69,7 +71,7 @@ void Document::append(string &push)
 
 void Document::d()
 {
-	lines.erase(lines.begin() + currentLine - 1);
+	lines.erase(lines.begin() + currentLine);
 	currentLine--;
 }
 
@@ -78,9 +80,13 @@ void Document::c()
 	d();
 	a();
 }
-
+void Document::dollar(){
+currentLine = lines.size();
+cout <<"currenline is"<<currentLine<<endl;
+}
 void Document::a()
 {
+	
 	addForward = true;
 }
 
@@ -88,21 +94,34 @@ void Document::num(int number)
 {
 
 	currentLine = number;
+	
 	cout << "CurrentLine is =" << currentLine << endl;
 	while (currentLine > lines.size())
 	{
 		lines.push_back("");
 	}
-	cout << lines[currentLine - 1] << endl;
+	
+	cout << lines[currentLine ] << endl;
 }
 void Document::num2(int move)
 {
-	if (currentLine + move < lines.size())
+	if (move > 0 && currentLine + move < lines.size())
+	{
+		
+		currentLine += move;
+		currentLine --;
+	}
+	
+	if (move < 0 && currentLine + move < lines.size())
 	{
 		currentLine += move;
+		currentLine--;
 	}
-	cout << "CurrentLine is = " << currentLine << endl;
+	cout << "current line is = "<< currentLine <<endl;
+	cout  << lines[currentLine] << endl;
 }
+
+
 // look for the text
 void Document::slesh_text(string text)
 {

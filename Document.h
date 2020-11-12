@@ -30,4 +30,5 @@ class Document{
 	void load();
 	void handle(string &);
 	void e(ifstream &in);
+	void dollar();
 };

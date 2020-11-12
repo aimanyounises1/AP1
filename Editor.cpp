@@ -92,6 +92,7 @@ void Editor::handle(string line)
 	{	
 		document.i();
 		waitForDot = true;
+		
 		return;
 	}
 	if (!line.compare("c"))
@@ -174,6 +175,11 @@ void Editor::handle(string line)
 			return;
 		}
 	}
+	if (line =="$")
+	{
+		document.dollar();
+	}
+	
 
 	//text
 	//document.text(line);
