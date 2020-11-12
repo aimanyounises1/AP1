@@ -73,7 +73,7 @@ void Document::d()
 {
 	//currentLine--;
 	cout << lines[currentLine]<<endl;
-	lines.erase(lines.begin() + currentLine);
+	lines.erase(lines.begin() + currentLine -1);
 	currentLine--;
 }
 
@@ -116,7 +116,7 @@ void Document::num2(int move)
 	if (move < 0 && currentLine + move < lines.size())
 	{
 		currentLine += move;
-		currentLine--;
+		//currentLine--;
 	}
 	cout << "current line is = "<< currentLine <<endl;
 	cout  << lines[currentLine] << endl;
@@ -178,14 +178,14 @@ void Document::e(ifstream &in)
 }
 void Document::j()
 {
-	if (currentLine > 1)
+	if (currentLine >= 0)
 	{
-		string a = lines[currentLine - 1] + lines[currentLine];
+		string a = lines[currentLine] + " "+ lines[currentLine+1];
 		cout << "The new string is " << a << endl;
-		lines.erase(lines.begin() + currentLine);
+		lines.erase(lines.begin() + currentLine +1);
 		currentLine = --currentLine;
-		lines.erase(lines.begin() + currentLine);
-		lines.insert(lines.begin() + currentLine, a);
+		lines.erase(lines.begin() + currentLine+1);
+		lines.insert(lines.begin() + currentLine +1, a);
 	}
 }
 void Document::w(string &out)
