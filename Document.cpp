@@ -30,7 +30,7 @@ void Document::text(string text)
 	{ 
 		vector<string>::iterator it;
 		it = lines.begin();
-		lines.insert(it + currentLine -1 , text);
+		lines.insert(it + currentLine  , text);
 		currentLine++;
 		cout<< "current line is = " << currentLine <<endl;
 		}
@@ -71,6 +71,8 @@ void Document::append(string &push)
 
 void Document::d()
 {
+	//currentLine--;
+	cout << lines[currentLine]<<endl;
 	lines.erase(lines.begin() + currentLine);
 	currentLine--;
 }
@@ -81,19 +83,18 @@ void Document::c()
 	a();
 }
 void Document::dollar(){
-currentLine = lines.size();
+currentLine = lines.size() ;
 cout <<"currenline is"<<currentLine<<endl;
 }
 void Document::a()
 {
-	
 	addForward = true;
 }
 
 void Document::num(int number)
 {
 
-	currentLine = number;
+	currentLine = number - 1;
 	
 	cout << "CurrentLine is =" << currentLine << endl;
 	while (currentLine > lines.size())
@@ -109,7 +110,7 @@ void Document::num2(int move)
 	{
 		
 		currentLine += move;
-		currentLine --;
+	//	currentLine --;
 	}
 	
 	if (move < 0 && currentLine + move < lines.size())
@@ -125,39 +126,41 @@ void Document::num2(int move)
 // look for the text
 void Document::slesh_text(string text)
 {
-	int current = currentLine;
+	
 	bool ok = false;
-	for (int i = current - 1; i < lines.size(); i++)
+	for (int i = currentLine ; i <= lines.size(); i++)
 	{
 		size_t found = lines[i].find(text);
 		if (found != string::npos)
 		{
-			currentLine = i + 1;
+			currentLine = i ;
 			ok = true;
 			break;
 		}
 	}
 	if (!ok)
 	{
-		for (int i = 0; i <= current - 1; i++)
+		for (int i = 0; i <= currentLine ; i++)
 		{
 			size_t found = lines[i].find(text);
 			if (found != string::npos)
 			{
-				currentLine = i + 1;
+				currentLine = i ;
 				ok = true;
 			}
 		}
 	}
 	if (ok)
 	{
-		cout << lines[currentLine - 1] << endl;
+		cout << lines[currentLine] << endl;
 	}
 }
 
 void Document::s_slech_old_new(string oldText, string newText)
 {
-	replace(lines[currentLine - 1], oldText, newText);
+	cout<<"current line is"<<currentLine <<endl;
+	replace(lines[currentLine ], oldText, newText);
+	cout << lines[currentLine]<<endl;
 }
 
 //replace 'from' in str into 'to'
