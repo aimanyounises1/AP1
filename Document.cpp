@@ -71,7 +71,8 @@ void Document::i()
 	}
 	else
 	{
-		currentLine--;
+		cout << "currenLine"<<currentLine <<endl;
+		
 	}
 
 	addForward = false;
