@@ -7,6 +7,7 @@
 using namespace std;
 static bool waitForDot = false;
 static bool zero = false;
+static bool aFun =  false;
 Editor::Editor() : document() {}
 
 void Editor::loop()
@@ -30,23 +31,9 @@ void Editor::init(string &name)
 	int count = 0;
 	while (getline(in, line))
 	{
-		if (line.at(0) == 'e' && line.find(".txt"))
-		{
-			ifstream in;
-			string name = line.substr(2, line.length());
-			cout << "The string is = " << name << endl;
-			in.open(name);
-			string a;
-			while (getline(in, a))
-			{
-				cout << a << endl;
-				document.append(a);
-			}
-			in.close();
-		}else{
 		vec.insert(count + vec.begin(), line);
 		count++;
-		}
+		
 	}
 	in.close();
 	for (int i = 0; i < vec.size(); i++)
@@ -90,6 +77,11 @@ void Editor::handle(string line)
 	}
 	if (!line.compare("a"))
 	{
+		if (document.lines.empty()&&document.currentLine == 0)
+		{
+			document.currentLine--;
+		
+		}
 		waitForDot = true;
 		document.a();
 		return;
@@ -189,8 +181,10 @@ void Editor::handle(string line)
 	{
 		document.dollar();
 	}
-	
-
+	if (line.at(0) == 'e' && line.find(".txt"))
+		{
+		document.e(line);
+		}
 	//text
 	//document.text(line);
 }

@@ -30,7 +30,7 @@ class Document{
 	void j();
 	void w(string &);
 	void load();
-	void handle(string &);
-	void e(ifstream &in);
+	void handle(string& );
+	void e(string &);
 	void dollar();
 };
