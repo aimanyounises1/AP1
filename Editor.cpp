@@ -24,13 +24,22 @@ void Editor::loop()
 
 void Editor::init(string &name)
 {
-	ifstream in;
-	in.open(name);
+	ifstream in(name);
+	cout << name << endl;
+	if (in.is_open())
+	{
+	cout << "file opened"<<endl;
+
+	}else
+	{
+		cout<<"file not opened"<<endl;
+	}
 	vector<string> vec;
 	string line;
 	int count = 0;
 	while (getline(in, line))
 	{
+		cout  << "inside loop "<<endl;
 		vec.insert(count + vec.begin(), line);
 		count++;
 	}

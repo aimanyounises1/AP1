@@ -65,7 +65,7 @@ void Document::n()
 
 void Document::i()
 {
-	
+
 	addForward = false;
 }
 void Document::append(string &push)
@@ -196,10 +196,11 @@ void Document::w(string &out)
 		if (i + 1 == lines.size())
 		{
 			output << lines[i];
-		}else
+		}
+		else
 		{
-			output << lines[i] <<"\n";
-		}	
+			output << lines[i] << "\n";
+		}
 	}
 	output.close();
 }
