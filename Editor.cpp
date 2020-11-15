@@ -16,7 +16,7 @@ void Editor::loop()
 	while (1)
 	{
 		getline(cin, a);
-		if (!a.compare("q"))
+		if (a == "q") 
 			break;
 		handle(a);
 	}
@@ -28,18 +28,17 @@ void Editor::init(string &name)
 	cout << name << endl;
 	if (in.is_open())
 	{
-	cout << "file opened"<<endl;
-
-	}else
+		cout << "file opened" << endl;
+	}
+	else
 	{
-		cout<<"file not opened"<<endl;
+		cout << "file not opened" << endl;
 	}
 	vector<string> vec;
 	string line;
 	int count = 0;
 	while (getline(in, line))
 	{
-		cout  << "inside loop "<<endl;
 		vec.insert(count + vec.begin(), line);
 		count++;
 	}
@@ -53,7 +52,6 @@ void Editor::init(string &name)
 		}
 		handle(vec[i]);
 	}
-	
 }
 //handle a text line from the user
 void Editor::handle(string line)
@@ -119,7 +117,7 @@ void Editor::handle(string line)
 	}
 	if (line.at(0) == 'w' && line.at(1) == ' ')
 	{
-		line = line.substr(2, line.length());
+		line = line.substr(2, line.length() - 1);
 		document.w(line);
 	}
 	if (!line.compare("n"))
@@ -193,9 +191,10 @@ void Editor::handle(string line)
 	if (line.at(0) == 'e' && line.find(".txt"))
 	{
 		document.e(line);
+	}else{
+		cout << "?"<<endl;
 	}
-	//text
-	//document.text(line);
+	
 }
 //split text by char and return a vector of words
 vector<string> Editor::split(string str, char splitBy)

@@ -9,7 +9,6 @@ Document::Document()
 {
 	currentLine = 0;
 	addForward = false;
-	currnetI = -1;
 }
 void Document::text(string text)
 {
@@ -91,10 +90,8 @@ void Document::dollar()
 }
 void Document::a()
 {
-
 	addForward = true;
 }
-
 void Document::num(int number)
 {
 	if (lines.empty())

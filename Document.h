@@ -8,8 +8,6 @@ class Document{
 	bool addBackward;
 	public:
 	int currentLine;
-	int currnetI;
-	bool started;
 	vector<string>lines;
 	bool replace(std::string& str, const std::string& from, const std::string& to);
 	Document();

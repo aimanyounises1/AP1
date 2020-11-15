@@ -1,4 +1,3 @@
-e months.txt
 1
 i
 Thirty days hath September,
