@@ -177,7 +177,7 @@ void Document::j()
 {
 	if (currentLine >= 0)
 	{
-		string a = lines[currentLine] + " " + lines[currentLine + 1];
+		string a = lines[currentLine] + lines[currentLine + 1];
 		lines.erase(lines.begin() + currentLine + 1);
 		currentLine = --currentLine;
 		lines.erase(lines.begin() + currentLine + 1);
