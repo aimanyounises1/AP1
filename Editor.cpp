@@ -7,7 +7,6 @@
 using namespace std;
 static bool waitForDot = false;
 static bool zero = false;
-static bool aFun = false;
 Editor::Editor() : document() {}
 
 void Editor::loop()
@@ -16,7 +15,7 @@ void Editor::loop()
 	while (1)
 	{
 		getline(cin, a);
-		if (a == "q") 
+		if (a == "q")
 			break;
 		handle(a);
 	}
@@ -43,9 +42,8 @@ void Editor::init(string &name)
 		count++;
 	}
 	in.close();
-	copy(vec.begin(),vec.end(),back_inserter(document.lines));
+	copy(vec.begin(), vec.end(), back_inserter(document.lines));
 	loop();
-	
 }
 //handle a text line from the user
 void Editor::handle(string line)
@@ -79,10 +77,6 @@ void Editor::handle(string line)
 	}
 	if (!line.compare("a"))
 	{
-		if (document.lines.empty() && document.currentLine == 0)
-		{
-			document.currentLine--;
-		}
 		waitForDot = true;
 		document.a();
 		return;
@@ -184,7 +178,7 @@ void Editor::handle(string line)
 	if (line.at(0) == 'e' && line.find(".txt"))
 	{
 		document.e(line);
-	}	
+	}
 }
 //split text by char and return a vector of words
 vector<string> Editor::split(string str, char splitBy)

@@ -20,7 +20,7 @@ void Document::text(string text)
 
 		vector<string>::iterator it;
 		it = lines.begin();
-		lines.insert(it + currentLine + 1, text);
+		lines.insert(it + currentLine, text);
 		currentLine++;
 	}
 	else
