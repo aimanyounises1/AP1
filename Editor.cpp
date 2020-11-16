@@ -23,16 +23,8 @@ void Editor::loop()
 
 void Editor::init(string &name)
 {
-	ifstream in(name);
-	cout << name << endl;
-	if (in.is_open())
-	{
-		cout << "file opened" << endl;
-	}
-	else
-	{
-		cout << "file not opened" << endl;
-	}
+	ifstream in;
+	in.open(name);
 	vector<string> vec;
 	string line;
 	int count = 0;
@@ -77,6 +69,10 @@ void Editor::handle(string line)
 	}
 	if (!line.compare("a"))
 	{
+		if (document.lines.empty() && document.currentLine == 0)
+		{
+			--document.currentLine;
+		}
 		waitForDot = true;
 		document.a();
 		return;
