@@ -188,17 +188,11 @@ void Document::w(string &out)
 {
 	ofstream output;
 	output.open(out);
-	for (int i = 0; i < lines.size(); i++)
-	{
-		if (i + 1 == lines.size())
-		{
-			output << lines[i];
-		}
-		else
-		{
-			output << lines[i] << "\n";
-		}
-	}
+	ostream_iterator <string>Out(output,"\n");
+	vector<string>::iterator it =  lines.begin();
+	vector<string>::iterator end;
+	end = lines.end();
+	copy(it,end,Out);
 	output.close();
 }
 vector<string> split(string str, char splitBy)

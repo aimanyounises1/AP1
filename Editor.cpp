@@ -43,15 +43,9 @@ void Editor::init(string &name)
 		count++;
 	}
 	in.close();
-	for (int i = 0; i < vec.size(); i++)
-	{
-		cout << vec[i] << endl;
-		if (!vec[i].compare("q"))
-		{
-			break;
-		}
-		handle(vec[i]);
-	}
+	copy(vec.begin(),vec.end(),back_inserter(document.lines));
+	loop();
+	
 }
 //handle a text line from the user
 void Editor::handle(string line)
