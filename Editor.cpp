@@ -161,7 +161,6 @@ void Editor::handle(string line)
 	{
 		document.j();
 	}
-
 	// '/text'
 	if (line.at(0) == '/')
 	{
@@ -185,10 +184,7 @@ void Editor::handle(string line)
 	if (line.at(0) == 'e' && line.find(".txt"))
 	{
 		document.e(line);
-	}else{
-		cout << "?"<<endl;
-	}
-	
+	}	
 }
 //split text by char and return a vector of words
 vector<string> Editor::split(string str, char splitBy)
